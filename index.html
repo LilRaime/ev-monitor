@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Monitor Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="./dist/output.css">
+</head>
+<body class="font-sans text-white flex h-screen overflow-hidden bg-ev-darker">
+
+    <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-ev-sidebar flex flex-col z-50 shadow-2xl closed md:relative md:transform-none">
+        <div class="h-20 flex items-center px-6 gap-3">
+            <div class="w-10 h-10 bg-ev-accent rounded-xl flex items-center justify-center">
+                <i class="fa-solid fa-car-side text-ev-sidebar text-xl"></i>
+            </div>
+            <span class="font-bold text-base tracking-wide text-gray-100">EV Monitor</span>
+            <button id="close-menu" class="md:hidden ml-auto text-gray-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+        </div>
+
+        <nav class="flex-1 mt-4 space-y-1">
+            <a href="#" class="flex items-center px-6 py-4 text-white bg-white/5 relative group">
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-ev-accent"></div>
+                <i class="fa-solid fa-chart-pie mr-4 text-ev-accent"></i> Dashboard
+            </a>
+            <a href="statistic.html" class="flex items-center px-6 py-4 text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+                <i class="fa-solid fa-chart-line mr-4"></i> Statistic
+            </a>
+            <div id="theme-toggle" class="flex items-center px-6 py-4 text-gray-400 hover:text-white hover:bg-white/5 transition-all cursor-pointer">
+                <i id="theme-icon" class="fa-solid fa-moon mr-4"></i>
+                <span id="theme-text">Dark mode</span>
+            </div>
+            <a href="#" class="flex items-center px-6 py-4 text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+                <i class="fa-solid fa-gear mr-4"></i> Settings
+            </a>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col relative min-w-0">
+
+        <header class="h-20 bg-ev-sidebar flex items-center justify-between px-4 md:px-8 z-10 border-l border-white/5">
+            <div class="flex items-center gap-4">
+                <button id="open-menu" class="md:hidden text-white text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1 class="text-lg md:text-2xl font-semibold truncate">Dashboard Overview</h1>
+            </div>
+            
+            <div class="flex items-center gap-3 md:gap-6">
+                <span class="hidden md:block text-gray-400 text-sm font-medium" id="clock"></span>
+                <div class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-ev-accent flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-user text-ev-sidebar text-sm"></i>
+                </div>
+            </div>
+        </header>
+
+        <main id="main-bg" class="flex-1 overflow-y-auto p-4 md:p-8">
+            
+        <div class="max-w-6xl mx-auto grid grid-cols-12 gap-4 md:gap-6 relative z-10">
+
+            <section class="group col-span-12 sm:col-span-6 md:col-span-3 bg-ev-card rounded-2xl p-6 h-40 flex flex-col justify-between shadow-lg hover:shadow-ev-accent/20 hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-ev-accent/30">
+                <div class="flex justify-between items-start">
+                    <h2 class="text-gray-400 text-xs font-semibold uppercase tracking-wider group-hover:text-ev-accent transition-colors">Current Power</h2> 
+                    <div class="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center group-hover:bg-yellow-500/20 transition-all duration-300"> 
+                        <i class="fa-solid fa-bolt-lightning text-yellow-500 text-xl group-hover:scale-125 group-hover:drop-shadow-[0_0_8px_rgba(234,179,8,0.6)] transition-all duration-300"></i>
+                    </div>
+                </div>
+                <div class="text-3xl font-bold text-gray-100 group-hover:text-white transition-colors tabular-nums" id="power-val">48.2 kW</div>
+            </section>
+
+            <section class="group col-span-12 sm:col-span-6 md:col-span-3 bg-ev-card rounded-2xl p-6 h-40 flex flex-col justify-between shadow-lg hover:shadow-ev-accent/20 hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-ev-accent/30">
+                <div class="flex justify-between items-start">
+                    <h2 class="text-gray-400 text-xs font-semibold uppercase tracking-wider group-hover:text-ev-accent transition-colors">Battery</h2>
+                    <div class="w-10 h-10 rounded-xl bg-ev-accent/10 flex items-center justify-center group-hover:bg-ev-accent/20 transition-all duration-300">
+                        <i class="fa-solid fa-battery-three-quarters text-ev-accent text-xl group-hover:animate-pulse transition-all"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-gray-100 mb-2 group-hover:text-white transition-colors tabular-nums">73%</div>
+                    <div class="w-full h-2 bg-ev-darker rounded-full overflow-hidden border border-white/5">
+                        <div class="bg-ev-accent w-[73%] h-full rounded-full transition-all duration-1000 group-hover:brightness-125 group-hover:shadow-[0_0_10px_#84cc16]"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="group col-span-12 md:col-span-6 bg-ev-card rounded-2xl p-6 h-40 flex flex-col shadow-lg hover:shadow-ev-accent/10 hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-ev-accent/30">
+                <div class="flex justify-between items-start mb-auto">
+                    <h2 class="text-gray-400 text-xs font-semibold uppercase tracking-wider group-hover:text-ev-accent transition-colors">Cost & Tariff</h2>
+                    <i class="fa-solid fa-circle-dollar-to-slot text-gray-500 group-hover:text-ev-accent transition-colors text-xl"></i>
+                </div>
+                <div class="flex justify-between md:justify-start md:gap-20">
+                    <div class="hover:scale-105 transition-transform">
+                        <div class="text-gray-500 text-xs uppercase font-bold mb-1">Total Cost</div>
+                        <div class="text-2xl font-bold text-gray-100 group-hover:text-ev-accent transition-colors">145.50 ₴</div>
+                    </div>
+                    <div class="hover:scale-105 transition-transform">
+                        <div class="text-gray-500 text-xs uppercase font-bold mb-1">Tariff</div>
+                        <div class="text-2xl font-bold text-gray-100 group-hover:text-white transition-colors">7.20 ₴/kWh</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="group col-span-12 lg:col-span-6 bg-ev-card rounded-2xl p-6 md:p-8 min-h-[300px] flex flex-col md:flex-row items-center gap-8 shadow-lg hover:shadow-ev-accent/10 transition-all duration-500 border border-transparent hover:border-ev-accent/20">
+                <div class="w-full md:w-1/2 flex flex-col items-center md:items-start">
+                    <h2 class="text-gray-400 text-xs font-semibold uppercase mb-8 group-hover:text-ev-accent transition-colors">Full Charging</h2>
+                    <div class="relative w-40 h-40 rounded-full flex items-center justify-center donut-chart shadow-xl group-hover:scale-110 transition-transform duration-500">
+                        <div class="w-32 h-32 bg-ev-card rounded-full flex flex-col items-center justify-center shadow-inner">
+                            <span class="text-4xl font-bold text-white group-hover:text-ev-accent transition-colors">35</span>
+                            <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">min left</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 flex justify-around md:flex-col md:gap-10">
+                    <div class="group/item cursor-default">
+                        <div class="text-xs text-gray-400 uppercase font-bold tracking-tighter mb-1">Efficiency</div>
+                        <div class="text-xl text-white font-semibold flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                            <i class="fa-solid fa-leaf text-ev-accent animate-bounce"></i> 94.2%
+                        </div>
+                    </div>
+                    <div class="group/item cursor-default">
+                        <div class="text-xs text-gray-400 uppercase font-bold tracking-tighter mb-1">Remaining</div>
+                        <div class="text-xl text-white font-semibold flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                            <i class="fa-solid fa-plug-circle-bolt text-ev-accent group-hover:rotate-12 transition-transform"></i> 31 kWh
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <a href="statistic.html" class="group col-span-12 lg:col-span-6 bg-ev-card rounded-2xl p-6 md:p-8 h-[300px] flex flex-col shadow-lg hover:shadow-ev-accent/10 transition-all duration-500 border border-transparent hover:border-ev-accent/20">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-gray-400 text-xs font-semibold uppercase tracking-wider group-hover:text-ev-accent transition-colors">Power by hours</h2>
+                    <div class="flex gap-2 items-center bg-ev-darker/50 px-3 py-1 rounded-full">
+                        <span class="w-2 h-2 bg-ev-accent rounded-full animate-ping"></span>
+                        <span class="text-xs text-ev-accent font-bold uppercase tracking-widest">Live Flow</span>
+                    </div>
+                </div>
+                <div class="flex-1 flex min-h-0 group-hover:scale-[1.02] transition-transform duration-500">
+                    <div class="w-12 flex flex-col justify-between pb-8 text-xs font-bold text-gray-500 italic">
+                        <span>100 kW</span><span>50 kW</span><span>0 kW</span>
+                    </div>
+                    <div class="flex-1 relative ml-2">
+                        <div class="absolute inset-0 flex flex-col justify-between pb-8 opacity-20">
+                            <div class="border-t border-gray-400 border-dashed w-full"></div>
+                            <div class="border-t border-gray-400 border-dashed w-full"></div>
+                            <div class="border-t border-gray-400 w-full"></div>
+                        </div>
+                        <svg class="absolute inset-0 w-full h-[calc(100%-32px)] overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+                            <path class="chart-path group-hover:stroke-[3px] transition-all duration-500" d="" stroke="#84cc16" stroke-width="2" fill="none" vector-effect="non-scaling-stroke"/>
+                        </svg>
+                        <div class="absolute bottom-0 left-0 right-0 hidden md:flex justify-between text-xs font-bold text-gray-500 italic">
+                            <span class="chart-hour-label"></span>
+                            <span class="chart-hour-label"></span>
+                            <span class="chart-hour-label"></span>
+                            <span class="chart-hour-label"></span>
+                            <span class="chart-hour-label"></span>
+                            <span class="chart-hour-label"></span>
+                            <span class="chart-hour-label"></span>
+                            <span class="chart-hour-label"></span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <script src="./src/js/main.js" type="module"></script>
+</body>
+</html>

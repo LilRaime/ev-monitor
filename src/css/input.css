@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+@layer base {
+  html {
+    zoom: 1.0;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      zoom: 1.2;
+    }
+  }
+}
+
+@layer components {
+
+  .donut-chart {
+    background: conic-gradient(#84cc16 85%, #181a25 0);
+  }
+
+  #main-bg {
+      background-color: theme('colors.ev.darker');
+  }
+  #main-bg.light-bg {
+      background-color: theme('colors.ev.main');
+      transition: background-color 0.5s ease;
+  }
+  #main-bg.dark-bg {
+      background-color: theme('colors.ev.darker');
+      transition: background-color 0.5s ease;
+  }
+  #main-bg.no-transition {
+      transition: none !important;
+  }
+
+  #sidebar {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  @media (max-width: 768px) {
+    #sidebar.closed {
+      transform: translateX(-100%);
+    }
+  }
+}

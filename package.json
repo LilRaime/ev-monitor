@@ -1,0 +1,19 @@
+{
+  "name": "ev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  },
+  "dependencies": {
+    "baseline-browser-mapping": "^2.10.0",
+    "caniuse-lite": "^1.0.30001776"
+  }
+}
