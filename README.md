@@ -2,7 +2,7 @@
 
 A dashboard for monitoring electric vehicle charging
 
-Built with **HTML**, **Tailwind CSS**, and **JavaScrips**. Supports dark and light themes.
+Built with **HTML**, **Tailwind CSS**, and **JavaScript**. Supports dark and light themes.
 
 ## Launch
 ```bash
