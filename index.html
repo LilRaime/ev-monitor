@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="./dist/output.css">
 </head>
-<body class="font-sans text-white flex h-screen overflow-hidden bg-ev-darker">
+<body class="font-sans text-white flex h-screen overflow-hidden">
 
     <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-ev-sidebar flex flex-col z-50 shadow-2xl closed md:relative md:transform-none">
         <div class="h-20 flex items-center px-6 gap-3">
@@ -94,14 +94,15 @@
                     <h2 class="text-gray-400 text-xs font-semibold uppercase tracking-wider group-hover:text-ev-accent transition-colors">Cost & Tariff</h2>
                     <i class="fa-solid fa-circle-dollar-to-slot text-gray-500 group-hover:text-ev-accent transition-colors text-xl"></i>
                 </div>
-                <div class="flex justify-between md:justify-start md:gap-20">
-                    <div class="hover:scale-105 transition-transform">
+                <div class="flex justify-between md:justify-start md:gap-12 items-end">
+                    <div>
                         <div class="text-gray-500 text-xs uppercase font-bold mb-1">Total Cost</div>
-                        <div class="text-2xl font-bold text-gray-100 group-hover:text-ev-accent transition-colors">145.50 ₴</div>
+                        <div class="text-2xl font-bold text-gray-100 group-hover:text-ev-accent transition-colors" id="total-cost">0.00 ₴</div>
                     </div>
-                    <div class="hover:scale-105 transition-transform">
-                        <div class="text-gray-500 text-xs uppercase font-bold mb-1">Tariff</div>
-                        <div class="text-2xl font-bold text-gray-100 group-hover:text-white transition-colors">7.20 ₴/kWh</div>
+                    <div>
+                        <div class="text-gray-500 text-xs uppercase font-bold mb-1">Tariff ₴/kWh</div>
+                        <input id="tariff-input" type="number" min="0.01" step="0.01" value="7.20"
+                            class="w-24 bg-ev-darker border border-white/10 text-white font-bold text-lg rounded-lg px-3 py-1 focus:outline-none focus:border-ev-accent transition-colors tabular-nums"/>
                     </div>
                 </div>
             </section>

@@ -15,40 +15,41 @@
 @layer base {
   html {
     zoom: 1.0;
+    background-color: theme('colors.ev.darker');
   }
-
+  html.light-bg {
+    background-color: theme('colors.ev.main');
+    transition: background-color 0.5s ease;
+  }
+  html.dark-bg {
+    background-color: theme('colors.ev.darker');
+    transition: background-color 0.5s ease;
+  }
+  html.no-transition {
+    transition: none !important;
+  }
   @media (min-width: 768px) {
     html {
       zoom: 1.2;
     }
   }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 }
 
 @layer components {
-
   .donut-chart {
     background: conic-gradient(#84cc16 85%, #181a25 0);
   }
-
-  #main-bg {
-      background-color: theme('colors.ev.darker');
-  }
-  #main-bg.light-bg {
-      background-color: theme('colors.ev.main');
-      transition: background-color 0.5s ease;
-  }
-  #main-bg.dark-bg {
-      background-color: theme('colors.ev.darker');
-      transition: background-color 0.5s ease;
-  }
-  #main-bg.no-transition {
-      transition: none !important;
-  }
-
   #sidebar {
     transition: transform 0.3s ease-in-out;
   }
-
   @media (max-width: 768px) {
     #sidebar.closed {
       transform: translateX(-100%);

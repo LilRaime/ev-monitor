@@ -57,9 +57,6 @@ function renderCharts() {
 
                 const span = document.createElement('span');
                 span.textContent = h + ':00';
-                if (i % 2 !== 0) 
-                    span.classList.add('hidden', 'md:block');
-
                 largeLabelsContainer.appendChild(span);
             }
         }
@@ -75,6 +72,7 @@ function renderCharts() {
         largeChartPath.setAttribute('d', pathString);
         largeChartArea.setAttribute('d', areaString);
     }
+    setChartMobileWidth();
 }
 
 /* Simulating a change in chart */
@@ -122,3 +120,20 @@ if (regenBtn) {
         renderCharts();
     });
 }
+
+function setChartMobileWidth() {
+    const inner = document.getElementById('chart-scroll-inner');
+    if (!inner) 
+        return;
+
+    // На мобільному кожна точка займає 33vw, на десктопі авто
+    if (window.innerWidth < 768) {
+        const totalPoints = 12;
+        const pointsVisible = 3;
+        inner.style.width = `${(totalPoints / pointsVisible) * 100}%`;
+    } else {
+        inner.style.width = '100%';
+    }
+}
+
+window.addEventListener('resize', setChartMobileWidth);
