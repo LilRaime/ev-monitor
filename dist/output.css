@@ -765,10 +765,6 @@ input[type="number"] {
   min-height: 400px;
 }
 
-.min-h-screen {
-  min-height: 100vh;
-}
-
 .w-1 {
   width: 0.25rem;
 }
@@ -1441,6 +1437,14 @@ input[type="number"] {
     position: relative;
   }
 
+  .md\:sticky {
+    position: sticky;
+  }
+
+  .md\:top-0 {
+    top: 0px;
+  }
+
   .md\:col-span-3 {
     grid-column: span 3 / span 3;
   }
@@ -1469,6 +1473,10 @@ input[type="number"] {
     height: 2.25rem;
   }
 
+  .md\:h-screen {
+    height: 100vh;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -1483,6 +1491,10 @@ input[type="number"] {
 
   .md\:min-w-0 {
     min-width: 0px;
+  }
+
+  .md\:flex-shrink-0 {
+    flex-shrink: 0;
   }
 
   .md\:transform-none {
